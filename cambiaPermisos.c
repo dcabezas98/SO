@@ -1,4 +1,20 @@
 
+/*
+  Programa que recibe como argumentos del pathname
+  de un directorio y un número octal de 4 dígitos.
+  
+  Cambia los permisos de cada uno de los archivos 
+  regulares del directorio usando el número octal
+  introducido y devuelve una salida con el siguiente 
+  formato:
+  
+    <nombre_de_archivo> : <permisos_antiguos> <permisos_nuevos>
+	
+  En caso de error devuelve:
+  
+    <nombre_de_archivo> : <errno> <permisos_antiguos>
+*/
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <dirent.h>
