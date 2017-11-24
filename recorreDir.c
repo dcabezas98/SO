@@ -8,6 +8,8 @@
   para el grupo y para otros. También devuelve el número de archivos
   en la jerarquía que cumplan la condición y el tamaño total 
   ocupado por dichos archivos.
+  
+  Recorre la jerarquía manualmente.
 */
 
 #include <sys/types.h>
