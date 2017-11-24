@@ -82,10 +82,3 @@ int main(int argc, char *argv[]){
 
   printf("El tamaño total ocupado por dichos archivos es %d bytes\n\n", tam);
 }
-    
-	  
-
-	  
-      
-
-      
