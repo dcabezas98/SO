@@ -1,3 +1,18 @@
+/*
+  Programa que recorre la jerarquía de subdirectorios del
+  directorio introducido como argumento, si no se introduce
+  argumento, toma como argumento el directorio actual.
+  
+  El programa devuelve los pathname y los números de inodo
+  de los archivos regulares que tengan permiso de ejecución
+  para el grupo y para otros. También devuelve el número de archivos
+  en la jerarquía que cumplan la condición y el tamaño total 
+  ocupado por dichos archivos.
+  
+  Recorre la estructura haciendo uso de la función nftw.
+*/
+
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -36,10 +51,3 @@ int main(int argc, char *argv[]){
 
   printf("El tamaño total ocupado por dichos archivos es %d bytes\n\n", tam);
 }
-    
-	  
-
-	  
-      
-
-      
