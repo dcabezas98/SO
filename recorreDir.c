@@ -14,44 +14,47 @@ void recorrerDir(char *path, int *n, int *tam){
 
   struct stat atrib;
   struct dirent *ed;
-  char nombre[256];
+  char nombre[4096];
   DIR *direct;
 
   direct = opendir(path);
 
   if(direct == NULL){
     printf("Error aptertura %s\n", path);
-    exit(-1);
   }
 
-  ed = readdir(direct);
-
-  while(ed != NULL){
-
-    if(strcmp(ed->d_name, ".") != 0 && strcmp(ed->d_name, "..") != 0){
-
-      sprintf(nombre,"%s/%s",path,ed->d_name);
-       
-      if(stat(nombre, &atrib) < 0){
-	printf("Error al acceder a atributos de %s\n", nombre);
-	exit(-1);
-      }
-
-      if(S_ISREG(atrib.st_mode) && criterio(atrib.st_mode)){
-	printf("%s %ld \n\n", nombre, atrib.st_ino);
-	(*n)++;
-	(*tam) += (int) atrib.st_size;
-      }
-
-      else if(S_ISDIR(atrib.st_mode)){
-	recorrerDir(nombre, n, tam);
-      }
-    }
+  else{
 
     ed = readdir(direct);
-  }
 
-  closedir(direct);
+    while(ed != NULL){
+
+      if(strcmp(ed->d_name, ".") != 0 && strcmp(ed->d_name, "..") != 0){
+
+	sprintf(nombre,"%s/%s",path,ed->d_name);
+       
+	if(stat(nombre, &atrib) < 0){
+	  printf("Error al acceder a atributos de %s\n", nombre);
+	  ed = readdir(direct);
+	  continue;
+	}
+
+	if(S_ISREG(atrib.st_mode) && criterio(atrib.st_mode)){
+	  printf("%s %ld \n\n", nombre, atrib.st_ino);
+	  (*n)++;
+	  (*tam) += (int) atrib.st_size;
+	}
+
+	else if(S_ISDIR(atrib.st_mode)){
+	  recorrerDir(nombre, n, tam);
+	}
+      }
+
+      ed = readdir(direct);
+    }
+
+    closedir(direct);
+  }
 }
 
 int main(int argc, char *argv[]){
@@ -70,11 +73,4 @@ int main(int argc, char *argv[]){
   printf("Existen %d archivos regulares con permiso de ejecución para grupos y otros\n\n", n);
 
   printf("El tamaño total ocupado por dichos archivos es %d bytes\n\n", tam);
-}
-    
-	  
-
-	  
-      
-
-      
+}     

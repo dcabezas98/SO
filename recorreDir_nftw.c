@@ -35,11 +35,4 @@ int main(int argc, char *argv[]){
   printf("Existen %d archivos regulares con permiso de ejecución para grupos y otros\n\n", n);
 
   printf("El tamaño total ocupado por dichos archivos es %d bytes\n\n", tam);
-}
-    
-	  
-
-	  
-      
-
-      
+}      
