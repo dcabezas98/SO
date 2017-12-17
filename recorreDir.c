@@ -33,7 +33,7 @@ void recorrerDir(char *path, int *n, int *tam){
   direct = opendir(path);
 
   if(direct == NULL){
-    printf("Error aptertura %s\n", path);
+    printf("Error apertura %s\n", path);
   }
 
   else{
