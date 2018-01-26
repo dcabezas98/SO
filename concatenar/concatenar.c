@@ -44,7 +44,7 @@ int main(int argc, char *argv[]){
     sprintf(path,"%s/%s",argv[1],arch->d_name);
     stat(path, &st);
 		
-    if(S_ISREG(st.st_mode) && (st.st_mode & S_IWUSR) && (st.st_mode & S_IWGRP)){  // Compruebo que el archivo sea del tipo que piden
+    if(S_ISREG(st.st_mode) && ((st.st_mode & S_IWUSR) == S_IWUSR) && ((st.st_mode & S_IWGRP) == S_IWGRP)){  // Compruebo que el archivo sea del tipo que piden
 			
       if(write(fsalida, path, strlen(path)+1) < 0){  // Nombre en el fichero de salida
 	perror("\nError de escritura");
